@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    {% if clima %}
+    <div class="container-fluid">
+        <p>Temperatura: {{ clima.temperatura }}°C</p>
+        <p>Descrição: {{ clima.descricao }}</p>
+        <p>Umidade: {{ clima.umidade }}%</p>
+    </div>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.cidade}}
+        <button type="submit">Alterar cidade</button>
+    </form>
+</div>

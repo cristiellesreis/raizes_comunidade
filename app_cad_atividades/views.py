@@ -2,9 +2,26 @@ from django.shortcuts import render
 from .models import Atividade
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from app_clima.views import  clima
+from app_clima.forms import CidadesForms
 
 def home(request):
-    return render(request, "./home.html")
+    if request.method == 'POST':
+        form = CidadesForms(request.POST)
+        if form.is_valid():
+            cidade = form.cleaned_data['cidade']
+    else:
+        cidade = 'santos'
+        form = CidadesForms(initial={'cidade': cidade})
+    
+    dados_clima = clima(cidade)
+    
+    contexto = {
+        'clima': dados_clima,
+        'form': form
+    }
+    
+    return render(request, "home.html", contexto)
 
 @login_required(login_url="/login/login/")
 def atividades(request):

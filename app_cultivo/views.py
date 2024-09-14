@@ -15,3 +15,5 @@ def pesquisa(request):
     query = request.GET.get('q')
     resultado = Cultivo.objects.filter(nome__icontains = query)
     return render(request, 'cultivo/busca.html', {'resultados': resultado})
+
+
