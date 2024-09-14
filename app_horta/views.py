@@ -1,19 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Horta, Cultura
 from django.contrib.auth.decorators import login_required
-from app_clima.views import  clima
 
 
 
 @login_required(login_url="/login/login/")
 def minha_horta(request):
     lista_culturas = {}
-    previsao = clima()
     try:
         horta_do_usuario = Horta.objects.get(usuario=request.user)
         horta_id = horta_do_usuario.id
         lista_culturas = Cultura.objects.filter(horta_id=horta_id)
-        return render(request, 'horta/horta.html', {'horta': horta_do_usuario, 'culturas': lista_culturas}, {'previsao': previsao})
+        return render(request, 'horta/horta.html', {'horta': horta_do_usuario, 'culturas': lista_culturas})
     except Horta.DoesNotExist:
         return render(request, 'horta/horta.html')
     
