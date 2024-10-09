@@ -14,6 +14,7 @@ urlpatterns = [
     path('authuser/', include('app_forum.urls')),
     path('cultivo/', include('app_cultivo.urls')),
     path('info_uteis/', include('app_info_uteis.urls')),
+    path('clima/', include('app_clima.urls')),
 
 ]
 
