@@ -77,10 +77,10 @@ WSGI_APPLICATION = "setup.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "raizesbd",
-        "USER": "root",
-        "PASSWORD": "pi123456",
-        "HOST": "raizesbd.cbgem6iugi81.us-east-1.rds.amazonaws.com",
+        "NAME": "appraizes",
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": "localhost",
         "PORT": "3306",
     }
 }
