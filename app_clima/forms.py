@@ -9,5 +9,5 @@ OPCOES_CIDADES = (
 class CidadesForms(forms.Form):
     cidade = forms.ChoiceField(
         choices=OPCOES_CIDADES,
-        widget=forms.Select(attrs={'class': 'btn btn-secondary dropdown-toggle'})
+        widget=forms.Select(attrs={'class': 'btn btn-light btn-sm dropdown-toggle'})
     )
