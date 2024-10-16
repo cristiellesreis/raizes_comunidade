@@ -1,25 +1,93 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="/media/horta.png" alt="First slide">
-    </div>
-</div>
-
-<div class="jumbotron jumbotron-fluid bg-white mb-0">
+<div class="jumbotron jumbotron-fluid bg-white pb-0 text-center">
   <div class="container">
     <h1 class="display-4">Somos o Raízes da Comunidade</h1>
     <p class="lead">Nossa plataforma te auxilia a participar ativamente dos cuidados da horta mais próxima de você!</p>
   </div>
 </div>
 
+<div class="card">
+  <img class="card-img" src="/media/horta-capa.png" alt="Card image">
+</div>
+
 {% include 'partials\_clima.html' %}
 
 
-<div class="d-flex justify-content-center flex-wrap">
-  <div class="card m-2" style="width: 18rem;">
+<div class="d-flex justify-content-center mt-5">
+  <div class="bg-success d-flex justify-content-center flex-wrap p-2 m-2" style="width: 7rem; border-radius: 15px;">
+    <img src="/media/vaso de planta.svg" alt="" class="pt-1">
+    <p class="text-white text-center font-weight-bold pt-1 m-0">Crie sua horta</p>
+  </div>
+  <div class="bg-success d-flex justify-content-center flex-wrap p-2 m-2" style="width: 7rem; border-radius: 15px;">
+    <img src="/media/Crescent Moon.svg" alt="" class="pt-1">
+    <p class="text-white text-center font-weight-bold pt-1 m-0">Fases da Lua</p>
+  </div>
+  <div class="bg-success d-flex justify-content-center flex-wrap p-2 m-2" style="width: 7rem; border-radius: 15px;">
+    <img src="/media/vaso de planta.svg" alt="" class="pt-1">
+    <p class="text-white text-center font-weight-bold pt-1 m-0">Plantas do mês</p>
+  </div>
+  <div class="bg-success d-flex justify-content-center flex-wrap p-2 m-2" style="width: 7rem; border-radius: 15px;">
+    <img src="/media/inspiracao.svg" alt="" class="pt-1">
+    <p class="text-white text-center font-weight-bold pt-1 m-0">inspiração</p>
+  </div>
+
+</div>
+
+
+<h4 class="text-center mt-5 mb-5">Hortas Comunitárias em Praia Grande</h4>
+
+<div class="container d-flex justify-content-center">
+  <div class="row" style="text-decoration: none;">
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Conjunto Habitacional Imperador</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Conjunto Habitacional Sítio do Campo</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Conjunto Habitacional Antártica I</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Conjunto Habitacional Santa Marina</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Residencial Vitória</a></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 text-center">
+      <div class="card bg-secondary">
+        <div class="card-body">
+          <h5><a href="#" style="text-decoration: none;" class="text-white">Horta do Conjunto Habitacional Silmara II e III</a></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-center flex-wrap mt-5">
+  <div class="card m-2" style="width: 22rem;">
     <img class="card-img-top" src="/media/img-04.jpg" alt="Imagem de capa do card">
     <div class="card-body">
       <h5 class="card-title">Cultivo</h5>
@@ -27,7 +95,7 @@
       <a href="{% url 'cultivo' %}" class="btn btn-success">Visitar</a>
     </div>
   </div>
-  <div class="card m-2" style="width: 18rem;">
+  <div class="card m-2" style="width: 22rem;">
     <img class="card-img-top" src="/media/img-03.jpg" alt="Imagem de capa do card">
     <div class="card-body">
       <h5 class="card-title">Dicas de Manutenção</h5>
@@ -35,7 +103,7 @@
       <a href="{% url 'info-uteis' %}" class="btn btn-success">Visitar</a>
     </div>
   </div>
-  <div class="card m-2" style="width: 18rem;">
+  <div class="card m-2" style="width: 22rem;">
     <img class="card-img-top" src="/media/img-01.jpg" alt="Imagem de capa do card">
     <div class="card-body">
       <h5 class="card-title">Fórum Comunitário</h5>
@@ -44,5 +112,8 @@
     </div>
   </div>
 </div>
+
+
+
 
 {% endblock %}
