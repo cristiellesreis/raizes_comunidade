@@ -15,7 +15,7 @@
 {% include 'partials\_clima.html' %}
 
 
-<div class="d-flex justify-content-center mt-5">
+<div class="d-flex justify-content-center mt-5 flex-wrap">
   <div class="bg-success d-flex justify-content-center flex-wrap p-2 m-2" style="width: 7rem; border-radius: 15px;">
     <img src="/media/vaso de planta.svg" alt="" class="pt-1">
     <p class="text-white text-center font-weight-bold pt-1 m-0">Crie sua horta</p>
@@ -35,6 +35,32 @@
 
 </div>
 
+<div class="d-flex justify-content-center flex-wrap mt-5">
+  <div class="card m-2" style="width: 22rem;">
+    <img class="card-img-top" src="/media/img-04.jpg" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Cultivo</h5>
+      <p class="card-text">Conheça as diferentes culturas para aderir a sua horta</p>
+      <a href="{% url 'cultivo' %}" class="btn btn-success">Visitar</a>
+    </div>
+  </div>
+  <div class="card m-2" style="width: 22rem;">
+    <img class="card-img-top" src="/media/img-03.jpg" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Dicas de Manutenção</h5>
+      <p class="card-text">Veja as principais dicas para cuidar e manter sua horta</p>
+      <a href="{% url 'info-uteis' %}" class="btn btn-success">Visitar</a>
+    </div>
+  </div>
+  <div class="card m-2" style="width: 22rem;">
+    <img class="card-img-top" src="/media/img-01.jpg" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">Fórum Comunitário</h5>
+      <p class="card-text">Converse com a sua comunidade! Juntos somos mais fortes!</p>
+      <a href="{% url 'forum' %}" class="btn btn-success">Visitar</a>
+    </div>
+  </div>
+</div>
 
 <h4 class="text-center mt-5 mb-5">Hortas Comunitárias em Praia Grande</h4>
 
@@ -85,33 +111,6 @@
   </div>
 </div>
 
-
-<div class="d-flex justify-content-center flex-wrap mt-5">
-  <div class="card m-2" style="width: 22rem;">
-    <img class="card-img-top" src="/media/img-04.jpg" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Cultivo</h5>
-      <p class="card-text">Conheça as diferentes culturas para aderir a sua horta</p>
-      <a href="{% url 'cultivo' %}" class="btn btn-success">Visitar</a>
-    </div>
-  </div>
-  <div class="card m-2" style="width: 22rem;">
-    <img class="card-img-top" src="/media/img-03.jpg" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Dicas de Manutenção</h5>
-      <p class="card-text">Veja as principais dicas para cuidar e manter sua horta</p>
-      <a href="{% url 'info-uteis' %}" class="btn btn-success">Visitar</a>
-    </div>
-  </div>
-  <div class="card m-2" style="width: 22rem;">
-    <img class="card-img-top" src="/media/img-01.jpg" alt="Imagem de capa do card">
-    <div class="card-body">
-      <h5 class="card-title">Fórum Comunitário</h5>
-      <p class="card-text">Converse com a sua comunidade! Juntos somos mais fortes!</p>
-      <a href="{% url 'forum' %}" class="btn btn-success">Visitar</a>
-    </div>
-  </div>
-</div>
 
 
 
