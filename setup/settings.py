@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "app_forum",
     "app_info_uteis",
     "app_cultivo",
-    "app_clima"
+    "app_clima",
+    "app_fases_lua"
 ]
 
 MIDDLEWARE = [
@@ -77,20 +78,20 @@ WSGI_APPLICATION = "setup.wsgi.application"
 
 REMOTE_DB = {
     "ENGINE": "django.db.backends.mysql",
-    "NAME": os.getenv("DB_NAME"),
-    "USER": os.getenv("DB_USER"),
-    "PASSWORD": os.getenv("DB_PASSWORD"),
-    "HOST": os.getenv("DB_HOST"),
+    "NAME": "appraizes",
+    "USER": "root",
+    "PASSWORD": "123456",
+    "HOST": "127.0.0.1",
     "PORT": "3306",
 }
 
 
 LOCAL_DB = {
     "ENGINE": "django.db.backends.mysql",
-    "NAME": os.getenv("DB_NAME_REMOTO"),
-    "USER": os.getenv("DB_USER_REMOTO"),
-    "PASSWORD": os.getenv("DB_PASSWORD_REMOTO"),
-    "HOST": os.getenv("DB_HOST_REMOTO"),
+    "NAME": "appraizes",
+    "USER": "root",
+    "PASSWORD": "123456",
+    "HOST": "127.0.0.1",
     "PORT": "3306",
 }
 
