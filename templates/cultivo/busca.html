@@ -6,10 +6,10 @@
       {% for resultado in resultados %}
         <div class="col-md-6">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{resultado.foto}}" alt="Imagem de capa do card">
+            <img class="card-img-top" src="{{resultado.foto}}" alt="Imagem de capa de {{resultado.nome}}">
             <div class="card-body">
-              <h5 class="card-title text-center">{{resultado.nome}}</h5>
-              <p class="card-text font-weight-light text-center">{{resultado.processo}}</p>
+              <h5 tabindex="0" class="card-title text-center">{{resultado.nome}}</h5>
+              <p tabindex="0" class="card-text font-weight-light text-center">{{resultado.processo}}</p>
             </div>
           </div>
         </div>
