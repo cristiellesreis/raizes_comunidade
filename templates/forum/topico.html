@@ -3,21 +3,21 @@
 
 <div class="jumbotron jumbotron-fluid bg-light">
   <div class="container">
-    <h1 class="display-4">Fórum</h1>
-    <p class="lead">Compartilhe idéias, soluções e desafios relacionados as hortas com a sua comunidade!</p>
+    <h1 tabindex="0" class="display-4">Fórum</h1>
+    <p tabindex="0" class="lead">Compartilhe idéias, soluções e desafios relacionados as hortas com a sua comunidade!</p>
   </div>
 </div>
 
 <div class="container">
   <div class="media border p-2 mb-3">
     <div class="d-flex flex-column">
-      <img class="img-thumbnail" src="/media/user-solid.svg" alt="imagem usuario">
-      <span class="text-center">{{nome_topico.criador}}</span>
+      <img class="img-thumbnail" src="/media/user-solid.svg" alt="Imagem do usuário.">
+      <span tabindex="0" class="text-center">{{nome_topico.criador}}</span>
     </div>
     <div class="media-body ml-3">
-      <h1>{{nome_topico.titulo}}</h1>
-      <p>{{nome_topico.descricao}}</p>
-      <p><em>{{nome_topico.data}}</em></p>
+      <h1 tabindex="0">{{nome_topico.titulo}}</h1>
+      <p tabindex="0">{{nome_topico.descricao}}</p>
+      <p tabindex="0"><em>{{nome_topico.data}}</em></p>
     </div>
   </div>
 
@@ -28,22 +28,22 @@
   </form>
   
   {% if comentarios %}
-    <p class="font-weight-bold">Respostas</p>
+    <p tabindex="0" class="font-weight-bold">Respostas</p>
     {% for comentario in comentarios %}
     <div class="card mb-3">
       <div class="card-header">
-        <span>{{comentario.usuario}}</span>
+        <span tabindex="0">{{comentario.usuario}}</span>
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          <p>{{comentario.comentario}}</p>
+          <p tabindex="0">{{comentario.comentario}}</p>
           <footer class="blockquote-footer">{{comentario.data}}</footer>
         </blockquote>
       </div>
     </div>
     {% endfor %}
   {% else %}
-    <p>Insira um comentário</p>
+    <p tabindex="0">Insira um comentário</p>
   {% endif %}
 
 {% endblock %}
