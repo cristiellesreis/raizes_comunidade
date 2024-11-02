@@ -10,7 +10,16 @@ class Horta(models.Model):
     participantes = models.ManyToManyField(User, related_name="hortas_comunitarias",blank=True)
 
     def __str__(self):
-        return f"self.nome"
+        return self.nome
+    
+class SolicitacaoAcesso(models.Model):
+    horta = models.ForeignKey(Horta,on_delete=models.CASCADE)
+    usuario_solicitante = models.ForeignKey(User, on_delete=models.CASCADE)
+    data_solicitacao = models.DateTimeField(auto_now_add=True)
+    aprovado = models.BooleanField(null=True, default=None)
+    
+    def __str__(self):
+        return f"Solicitação de {self.usuario_solicitante} para {self.horta.nome}"
     
     
 class Cultura(models.Model):
@@ -23,6 +32,7 @@ class Cultura(models.Model):
         return f"{self.name} - {self.type} - {self.desc}"
     
 class Plantio(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     cultura = models.ForeignKey(Cultura, on_delete=models.CASCADE)
     dt_plantio = models.DateField(null=False)
     ultima_atv = models.DateField(null=True)

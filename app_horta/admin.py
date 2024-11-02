@@ -1,17 +1,25 @@
 from django.contrib import admin
-from .models import Horta, Cultura
+from .models import Horta, Cultura, SolicitacaoAcesso
+
+class ParticipanteInline(admin.TabularInline):
+    model = Horta.participantes.through 
+    extra = 1  
 
 @admin.register(Horta)
 class HortaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'usuario', 'descricao', 'comunitaria')
     search_fields = ('nome', 'usuario__username')
     list_filter = ('comunitaria',)
-    
+    inlines = [ParticipanteInline]
+
     fieldsets = (
         (None, {
             'fields': ('nome', 'descricao', 'usuario', 'comunitaria')
         }),
     )
+    exclude = ('participantes',)
+
+
 
 @admin.register(Cultura)
 class CulturaAdmin(admin.ModelAdmin):
@@ -22,5 +30,17 @@ class CulturaAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('name', 'type', 'desc', 'horta')
+        }),
+    )
+
+@admin.register(SolicitacaoAcesso)
+class SolicitacaoAcessoAdmin(admin.ModelAdmin):
+    list_display = ('horta', 'usuario_solicitante', 'data_solicitacao', 'aprovado')
+    search_fields = ('horta', 'usuario_solicitante')
+    list_filter = ('horta',)
+    
+    fieldsets = (
+        (None, {
+            'fields': ('horta', 'usuario_solicitante', 'aprovado')
         }),
     )

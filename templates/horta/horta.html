@@ -13,6 +13,12 @@
         {% if horta %}
         <div class="d-flex justify-content-center flex-column align-items-center mb-5 mt-5 bg-light">
             <h1>{{ horta.nome }}</h1>
+            {% if membros %}
+            <span>Membros: </span>
+            {% for membro in membros %}
+            <span>{{ membro.username }}</span>
+            {% endfor %}
+            {% endif %}
             <p><span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}</p>
             <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">
                 Incluir cultura <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>

@@ -63,7 +63,7 @@ def user_login(request):
         if user:
             user = authenticate(username=user.username, password=senha)
             login(request, user)
-            return render(request, "home.html", {'sucessful_message': 'Usuário Logado com sucesso'} )
+            return redirect('home')
         else:
             lista_mensagem = {}
             lista_mensagem['mensagem_erro'] = 'E-mail ou senha inválidos'

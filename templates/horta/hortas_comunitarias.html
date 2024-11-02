@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ horta.nome }}</h5>
                         <p class="card-text">{{ horta.descricao }}</p>
-                        <a href="#" class="btn btn-success">Ingressar</a>
+                        <a href="{% url 'ingressar_horta' horta.id %}" class="btn btn-success">Ingressar</a>
                     </div>
                 </div>
             </div>
