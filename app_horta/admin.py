@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Horta, Cultura, SolicitacaoAcesso
+from .models import Horta, Cultura, SolicitacaoAcesso, Plantio
 
 class ParticipanteInline(admin.TabularInline):
     model = Horta.participantes.through 
@@ -42,5 +42,17 @@ class SolicitacaoAcessoAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('horta', 'usuario_solicitante', 'aprovado')
+        }),
+    )
+    
+@admin.register(Plantio)
+class PlantioAdmin(admin.ModelAdmin):
+    list_display = ('cultura', 'usuario', 'descricao', 'horta')
+    search_fields = ('cultura__name', 'horta__nome')
+    list_filter = ('horta',)
+
+    fieldsets = (
+        (None, {
+            'fields': ('cultura__name', 'descricao', 'horta')
         }),
     )

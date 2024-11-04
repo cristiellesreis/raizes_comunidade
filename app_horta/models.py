@@ -34,8 +34,8 @@ class Cultura(models.Model):
 class Plantio(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     cultura = models.ForeignKey(Cultura, on_delete=models.CASCADE)
-    dt_plantio = models.DateField(null=False)
-    ultima_atv = models.DateField(null=True)
-    descricao_atv = models.CharField(max_length=150,null= True)
+    horta = models.ForeignKey(Horta, on_delete=models.CASCADE)
+    dt_plantio = models.DateTimeField(auto_now_add=True)
+    descricao = models.CharField(max_length=150,null= True)
     
 

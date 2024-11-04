@@ -20,7 +20,7 @@
             {% endfor %}
             {% endif %}
             <p><span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}</p>
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">
+            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_cultura">
                 Incluir cultura <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -58,7 +58,7 @@
 
 
     <section>
-        <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="forms_cultura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form action={% url 'inserir_cultura' %} method='POST'>
                 <div class="modal-content">
@@ -92,6 +92,75 @@
             </div>
         </div>
     </div>
+
+    <section>
+        <div class="d-flex justify-content-center flex-column align-items-center mb-5 mt-5 bg-light">
+            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_atividade">
+                Cadastrar Atividade <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
+            </button>
+        </div>
+
+        <div class="modal fade" id="forms_atividade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{% url 'criar_tarefa'%}" method='POST'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">O quê faremos hoje?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Escolha a cultura para realizar a atividade</label>
+                            <select name="cultura" class="form-control">
+                                {% for cultura in culturas %}
+                                    <option value="{{ cultura.id }}">{{ cultura.name }} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
+                            <textarea name="descricao_atv" rows="3" class="form-control"></textarea >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <input type="hidden" name="horta_id" value="{{ horta.id }}">
+                        <input type="submit" class="btn btn-success" value="Adicionar"></input>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div>
+        </table>
+            {% if tarefas  %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cultura</th>
+                            <th>Atividade</th>
+                            <th>Data</th>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarefa in tarefas %}
+                            <tr>
+                            <td>{{tarefa.cultura.name}}</td>
+                            <td>{{tarefa.descricao}}</td>
+                            <td>{{tarefa.dt_plantio}}</td>
+                            <td>{{tarefa.usuario.username}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+
+    </section>
 
 
     {% else %}

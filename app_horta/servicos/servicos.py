@@ -27,3 +27,6 @@ def rejeitar_solicitacao(solicitacao_id):
     solicitacao.aprovado = False
     solicitacao.save()
     return "Solicitação rejeitada com sucesso."
+
+
+
