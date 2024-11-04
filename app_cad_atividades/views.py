@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from app_fases_lua.views import fases_lua
 from .models import Atividade
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -15,12 +17,14 @@ def home(request):
         form = CidadesForms(initial={'cidade': cidade})
     
     dados_clima = clima(cidade)
-    
+    dados_fase_lua = fases_lua(cidade)
+
     contexto = {
         'clima': dados_clima,
-        'form': form
+        'form': form,
+        'fase_lua': dados_fase_lua
     }
-    
+
     return render(request, "home.html", contexto)
 
 @login_required(login_url="/login/login/")
