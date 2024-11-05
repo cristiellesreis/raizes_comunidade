@@ -16,7 +16,7 @@ def clima(cidade):
     response = requisicao.json()
         
     clima = {
-    "descricao" : response['weather'][0]['description'],
+    "descricao" : response['weather'][0]['description'].capitalize(),
     "temperatura" : response['main']['temp'],
     "max_temp" : response['main']['temp_max'],
     "min_temp" : response['main']['temp_min'],

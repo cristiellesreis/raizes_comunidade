@@ -9,7 +9,7 @@ class Atividade(models.Model):
     atividade = models.TextField(max_length=255)
     dt_atividadedb = models.DateField()
     usuario_id = models.CharField(max_length=100, default="admin")
-    
+    #
     
     #id_especie = models.IntegerField()
 

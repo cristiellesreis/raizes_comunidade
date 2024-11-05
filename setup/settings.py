@@ -20,7 +20,7 @@ SECRET_KEY = "django-insecure-41v%no!@##^m%hc7!x0&57j71q1(a!!3d=#&3yxp*55afk63pm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['44.213.112.189', 'localhost', '127.0.0.1', '34.232.184.220']
+ALLOWED_HOSTS = ['44.213.112.189', 'localhost', '127.0.0.1', '34.232.184.220', 'www.studycenterhub.online', 'studycenterhub.online']
 
 
 # Application definition
@@ -75,41 +75,16 @@ WSGI_APPLICATION = "setup.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-REMOTE_DB = {
-    "ENGINE": "django.db.backends.mysql",
-    "NAME": os.getenv("DB_NAME"),
-    "USER": os.getenv("DB_USER"),
-    "PASSWORD": os.getenv("DB_PASSWORD"),
-    "HOST": os.getenv("DB_HOST"),
-    "PORT": "3306",
-}
-
-
-LOCAL_DB = {
-    "ENGINE": "django.db.backends.mysql",
-    "NAME": os.getenv("DB_NAME_REMOTO"),
-    "USER": os.getenv("DB_USER_REMOTO"),
-    "PASSWORD": os.getenv("DB_PASSWORD_REMOTO"),
-    "HOST": os.getenv("DB_HOST_REMOTO"),
-    "PORT": "3306",
-}
-
-def check_conexao_remota():
-    try:
-        socket.create_connection((REMOTE_DB['HOST'], int(REMOTE_DB["PORT"])), timeout=5)
-        return True
-    except (socket.timeout, OSError):
-        return False
-    
-if check_conexao_remota():
-    DATABASES = {
-        'default': REMOTE_DB
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.getenv("NAME"),
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": os.getenv("HOST"),
+        "PORT": "3306",
     }
-else:
-    DATABASES = {
-        'default': LOCAL_DB
-    }
-
+}
 
 
 # Password validation

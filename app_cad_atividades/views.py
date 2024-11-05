@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Atividade
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from app_horta.models import SolicitacaoAcesso, Horta 
 from app_clima.views import  clima
 from app_clima.forms import CidadesForms
 
@@ -15,10 +16,17 @@ def home(request):
         form = CidadesForms(initial={'cidade': cidade})
     
     dados_clima = clima(cidade)
+    solicitacoes_pendentes = []
+    if request.user.is_authenticated:
+        solicitacoes_pendentes = SolicitacaoAcesso.objects.filter(
+            horta = Horta.objects.filter(usuario=request.user).first(),
+            aprovado=None
+        )
     
     contexto = {
         'clima': dados_clima,
-        'form': form
+        'form': form,
+        'solicitacoes': solicitacoes_pendentes
     }
     
     return render(request, "home.html", contexto)
