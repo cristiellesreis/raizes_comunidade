@@ -3,8 +3,8 @@
 
 <div class="jumbotron jumbotron-fluid bg-light">
   <div class="container">
-    <h1 class="display-4">Fórum <i class="fa-solid fa-users fa-2xs" style="color: #949494;"></i></h1>
-    <p class="lead">Compartilhe idéias, soluções e desafios relacionados as hortas com a sua comunidade!</p>
+    <h1 tabindex="0" class="display-4">Fórum <i class="fa-solid fa-users fa-2xs" style="color: #949494;"></i></h1>
+    <p tabindex="0" class="lead">Compartilhe idéias, soluções e desafios relacionados as hortas com a sua comunidade!</p>
   </div>
 </div>
 
@@ -19,19 +19,19 @@
     {% for topico in topicos  %}
       <div class="media border p-2 mb-3">
         <div class="d-flex flex-column">
-          <img class="img-thumbnail" src="/media/user-solid.svg" alt="imagem usuario">
-          <span class="text-center">{{topico.criador}}</span>
+          <img class="img-thumbnail" src="/media/user-solid.svg" alt="Imagem do usuário.">
+          <span tabindex="0" class="text-center">{{topico.criador}}</span>
         </div>
         <div class="media-body ml-3">
-          <a href={% url "topico" pk=topico.id %}><h5 class="mt-0">{{topico.titulo}}</h5></a>
-          <p>{{topico.descricao}}</p>
-          <p><em>{{topico.data}}</em></p>
+          <a href="{% url 'topico' pk=topico.id %}"><h5 tabindex="0" class="mt-0">{{topico.titulo}}</h5></a>
+          <p tabindex="0">{{topico.descricao}}</p>
+          <p tabindex="0"><em>{{topico.data}}</em></p>
         </div>
       </div>
     {% endfor %}
 
   {% else %}
-    <div class="alert alert-warning text-center" role="alert">
+    <div tabindex="0" class="alert alert-warning text-center" role="alert">
       Não há tópicos para serem exibidos!
     </div>
   {% endif %}
@@ -42,11 +42,11 @@
 
 <div class="modal fade" id="modalForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <form action= {% url "criar_topico" %} method="post">
+    <form action="{% url 'criar_topico' %}" method="post">
       {% csrf_token %}
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nova Postagem</h5>
+          <h5 tabindex="0" class="modal-title" id="exampleModalLabel">Nova Postagem</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -57,7 +57,7 @@
             <input name="nomeTopico" id="nomeTopico" class="form-control" placeholder="Título do Assunto" type="text" required onchange="this.value = this.value.trim()">
           </div>
           <div class="form-group">
-            <label for="textoTopico" class="col-form-label">Mensagem: </label>
+            <label tabindex="0" for="textoTopico" class="col-form-label">Mensagem: </label>
             <textarea name="textoTopico" id="textoTopico" rows="3" class="form-control" placeholder="Escreva aqui a sua mensagem" required></textarea>
           </div>
         </div>
