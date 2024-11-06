@@ -8,7 +8,7 @@ import os
 
 load_dotenv()
 
-API_KEY = "inserir chave api"
+API_KEY = os.getenv("API_KEY")
 
 def clima(cidade):
     url= f"https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={API_KEY}&units=metric&lang=pt_br"

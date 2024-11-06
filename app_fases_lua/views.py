@@ -4,12 +4,10 @@ from datetime import date
 
 API_KEY = "inserir chave"
 
-
 def fases_lua(cidade):
     url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{cidade}/{date.today()}?unitGroup=us&key={API_KEY}&include=days&&elements=moonphase,datetime"
     requisicao = requests.get(url)
     response = requisicao.json()
-    print(response)
     codigo_fase_lua = response['days'][0]['moonphase']
 
     fases_lua = {}
@@ -41,6 +39,4 @@ def fases_lua(cidade):
             "descricao": "Na fase minguante da lua, é hora de se dedicar à manutenção e ao cuidado do solo. Este é um período ideal para realizar podas de limpeza, remover ervas daninhas e fertilizar a terra. Além disso, é um bom momento para transplantar plantas, pois a lua minguante favorece o crescimento das raízes.",
             "imagem_lua": "https://assets.hgbrasil.com/weather/icons/moon/waning_crescent.png"
         }
-            
-    print(fases_lua)
     return fases_lua
