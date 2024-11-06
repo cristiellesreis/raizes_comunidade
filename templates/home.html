@@ -1,70 +1,99 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<div class="jumbotron jumbotron-fluid bg-white mb-0">
-  <div class="container">
-    <h1 class="display-4">Somos o Raízes da Comunidade</h1>
-    <p tabindex="0" class="lead">Nossa plataforma te auxilia a participar ativamente dos cuidados da horta mais próxima de você!</p>
-  </div>
-</div>
-{% include 'partials/_clima.html' %}
-
-<div id="myCarousel" class="carousel slide carousel-fade mb-5" data-ride="carousel" style="background-color:#F3F4EE;">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="mask flex-center">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-7 col-12 order-md-1 order-2">
-              <h4 class="mb-3">Hortas Comunitárias<br></h4>
-              <p tabindex="0" >Hortas comunitárias são pedacinhos de terra cultivados por pessoas de uma comunidade que se juntam para plantar, cuidar e colher alimentos juntos. Elas podem ser pequenas, como em um terreno baldio na cidade, ou maiores, em áreas específicas destinadas a isso.</p>
-              <a href="{% url 'minha_horta' %}" type="button" class="btn btn-lg btn-success  mt-3 mb-5">Crie sua horta</a> </div>
-            <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/casal2-horta.png" class="mx-auto d-block w-100 pt-5 pb-5 rounded" alt="Um homem e uma mulher cuidando de uma horta."></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="mask flex-center">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-7 col-12 order-md-1 order-2">
-              <h4 class="mb-3">Hortas Escolares<br></h4>
-              <p tabindex="0" >Hortas escolares são áreas dentro ou próximas às escolas onde os alunos e, às vezes, também os professores e funcionários, cultivam plantas com objetivos educativos, ambientais e alimentares. Essas hortas são geralmente integradas ao currículo escolar e podem ser encontradas em escolas de todos os níveis, desde o ensino fundamental até o ensino médio.</p>
-              <a href="{% url 'minha_horta' %}" type="button" class="btn btn-lg btn-success">Crie sua horta</a> </div>
-              <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/criancas-horta.png" class="mx-auto d-block w-100 pt-5 pb-5 rounded" alt="Crianças plantando uma muda em uma horta."></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="mask flex-center">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-7 col-12 order-md-1 order-2">
-              <h4 class="mb-3">Hortas familiares<br></h4>
-              <p tabindex="0">Hortas familiares são áreas de cultivo de plantas, geralmente localizadas nos quintais ou em pequenos espaços ao redor das casas, onde as famílias cultivam uma variedade de vegetais, ervas, frutas ou flores para consumo próprio. Essas hortas são mantidas por membros da família e podem variar em tamanho e complexidade, dependendo dos recursos disponíveis e do interesse dos envolvidos.</p>
-              <a href="{% url 'minha_horta' %}" type="button" class="btn btn-lg btn-success">Crie sua horta</a> </div>
-              <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/idosa-horta.png" class="mx-auto d-block w-100 pt-5 pb-5 rounded" alt="Uma mulher idosa colhendo alface."></div>
-          </div>
-        </div>
-      </div>
+<div>
+  <div class="jumbotron jumbotron-fluid bg-transparent pb-0 text-center">
+    <div class="container">
+      <h1 class="display-4">Somos o Raízes da Comunidade</h1>
+      <p tabindex="0" class="lead">Nossa plataforma te auxilia a participar ativamente dos cuidados da horta mais próxima de você!</p>
     </div>
   </div>
+</div>
 
-  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
-    <span class="sr-only">Previous</span>
-  </a> 
-  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> 
-    <span class="carousel-control-next-icon" aria-hidden="true"></span> 
-    <span class="sr-only">Next</span>
-  </a>
+{% include 'partials\_clima.html' %}
 
+<div class="d-flex justify-content-center mt-5 flex-wrap">
+  <div class="bg-light shadow p-3 mb-5 bg-white rounded d-flex justify-content-center flex-wrap p-2 m-2" style="width: 15rem; border-radius: 15px;">
+    <div class="d-flex justify-content-center flex-wrap">
+      <i class="fa-solid fa-2xl fa-people-group m-4" style="color: #000000;"></i>
+      <p class="text-dark text-center font-weight-bold pt-1 m-0">Fortalecimento da Comunidade</p>
+    </div>
+    <p class="text-center p-3">Trabalhar em conjunto fortalece laços sociais, promove a colaboração e aumenta a sensação de pertencimento.</p>
+  </div>
+  <div class="bg-light shadow p-3 mb-5 bg-white rounded d-flex justify-content-center flex-wrap p-2 m-2" style="width: 15rem; border-radius: 15px;">
+    <div class="d-flex justify-content-center flex-wrap">
+      <i class="fa-solid fa-carrot fa-2xl m-4" style="color: #000000;"></i>    
+      <p class="text-dark text-center font-weight-bold pt-1 m-0" >Alimentação Saudável</p>
+    </div>
+    <p class="text-center p-3">A horta proporciona acesso a alimentos frescos e saudáveis, contribuindo para uma dieta mais equilibrada.</p>
+  </div>
+  <div class="bg-light shadow p-3 mb-5 bg-white rounded d-flex justify-content-center flex-wrap p-2 m-2" style="width: 15rem; border-radius: 15px;">
+    <div class="d-flex justify-content-center flex-wrap">
+      <i class="fa-solid fa-piggy-bank fa-2xl m-4" style="color: #000000;"></i>    
+      <p class="text-dark text-center font-weight-bold pt-1 m-0">Economia financeira</p>
+    </div>
+    <p class="text-center p-3">Pode ajudar a reduzir os custos com alimentos, especialmente se a produção for significativa.</p>
+  </div>
 </div>
 
 
-<div class="d-flex justify-content-center flex-wrap">
+<div class="bg-light">
+  <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-12 order-md-1 order-2 text-center">
+                <h4 class="mb-3">Hortas Comunitárias<br></h4>
+                <p tabindex="0" class="pb-5 font-weight-light">Hortas comunitárias são pedacinhos de terra cultivados por pessoas de uma comunidade que se juntam para plantar, cuidar e colher alimentos juntos. Elas podem ser pequenas, como em um terreno baldio na cidade, ou maiores, em áreas específicas destinadas a isso.</p>
+              </div>
+              <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/casal2-horta.png" class="mx-auto d-block w-100 pt-5 pb-5 rounded" alt="slide"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-12 order-md-1 order-2 text-center">
+                <h4 class="mb-3">Hortas Escolares<br></h4>
+                <p tabindex="0" class="pb-5 font-weight-light">Hortas escolares são áreas dentro ou próximas às escolas onde os alunos e, às vezes, também os professores e funcionários, cultivam plantas com objetivos educativos, ambientais e alimentares. Essas hortas são geralmente integradas ao currículo escolar e podem ser encontradas em escolas de todos os níveis, desde o ensino fundamental até o ensino médio.</p>
+              </div>
+              <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/criancas-horta.png" class="mx-auto d-block w-100 pt-5 pb-5 rounded" alt="slide"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="mask flex-center">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 col-12 order-md-1 order-2 text-center">
+                <h4 class="mb-3">Hortas familiares<br></h4>
+                <p tabindex="0" class="pb-5 font-weight-light">Hortas familiares são áreas de cultivo de plantas, geralmente localizadas nos quintais ou em pequenos espaços ao redor das casas, onde as famílias cultivam uma variedade de vegetais, ervas, frutas ou flores para consumo próprio. Essas hortas são mantidas por membros da família e podem variar em tamanho e complexidade, dependendo dos recursos disponíveis e do interesse dos envolvidos.</p>
+              </div>
+              <div class="col-md-5 col-12 order-md-2 order-1"><img src="/media/idosa-horta.png" class="d-block w-100 pt-5 pb-5 rounded" alt="slide"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+      <span class="sr-only">Previous</span>
+    </a> 
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> 
+      <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  
+</div>
+
+
+<div class="d-flex justify-content-center flex-wrap mt-5">
   <div class="card m-2" style="width: 18rem;">
     <img class="card-img-top" src="/media/img-04.jpg" alt="Imagem focada nas mãos sujas de terra ao plantar.">
     <div class="card-body">
@@ -90,5 +119,38 @@
     </div>
   </div>
 </div>
+
+
+<div class="mt-5">
+  <h4 class="text-center mb-4">Confira algumas hortas comunitárias cadastradas!</h4>
+  <div class="d-flex justify-content-center">
+    <div class="row d-flex justify-content-center m-0">
+      <div class="col-11">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action text-center list-group-item-light" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Horta do Conjunto Habitacional Imperador</a>
+          <a class="list-group-item list-group-item-action text-center list-group-item-light" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Horta do Conjunto Habitacional Sítio do Campo</a>
+          <a class="list-group-item list-group-item-action text-center list-group-item-light" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Horta do Conjunto Habitacional Antártica I</a>
+        </div>
+      </div>
+      <div class="col-11 d-flex justify-content-center mt-4 text-center">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <img src="/media/horta-pg.jpg" alt="..." class="img-thumbnail" style="width: 40rem;">
+            <figcaption class="figure-caption">Endereço: R. Olhete - Imperador, Praia Grande - SP</figcaption>
+          </div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <img src="/media/horta-pg.jpg" alt="..." class="img-thumbnail" style="width: 40rem;" >
+            <figcaption class="figure-caption">Endereço: R. Senador Azevedo Junior - Sítio do Campo, Praia Grande - SP</figcaption>
+          </div>
+          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+            <img src="/media/horta-pg.jpg" alt="..." class="img-thumbnail" style="width: 40rem;">
+            <figcaption class="figure-caption">Endereço: R. Caminho do Guaramar - Antártica, Praia Grande - SP</figcaption>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}

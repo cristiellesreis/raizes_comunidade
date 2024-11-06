@@ -1,36 +1,44 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<div class="jumbotron jumbotron-fluid bg-light">
-    <div class="container">
-      <h1 tabindex="0" class="display-4">Registre as atividades <i class="fa-solid fa-calendar-check fa-2xs" style="color: #949494;"></i></h1>
-      <p tabindex="0" class="lead">Planeje e registre suas contribuições junto a comunidade! Aqui você poderá registrar e visualizar as atividades relacionadas a horta!</p>
+    <div class="jumbotron jumbotron-fluid bg-light">
+        <div class="container">
+        <h1 tabindex="0" class="display-4">Registre as atividades <i class="fa-solid fa-calendar-check fa-2xs" style="color: #949494;"></i></h1>
+        <p tabindex="0" class="lead">Planeje e registre suas contribuições junto a comunidade! Aqui você poderá registrar e visualizar as atividades relacionadas a horta!</p>
+        </div>
     </div>
-  </div>
 
     <div class="container">
         <div style="text-align: left;" class="container-fluid"> 
             <button type="button" class="btn btn-success btn-lg mb-5" data-toggle="modal" data-target="#modalAtividade" data-whatever="@mdo">Adicionar Atividade <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i></button>
         </div>
-    
-        
+
+
         <table class="table table-bordered table-strip table-hover">
             <tr>
                 <th tabindex="0">id</th>
                 <th tabindex="0">Atividade</th>
                 <th tabindex="0">Data</th>
                 <th tabindex="0">Nome</th>
+                <th tabindex="0">Ações</th>
+
             </tr>
              {% for atividade in atividades %}
                 <tr>
-                <td tabindex="0">{{atividade.id}}</td>
-                <td tabindex="0">{{atividade.atividade}}</td>
-                <td tabindex="0">{{atividade.dt_atividadedb}}</td>
-                <td tabindex="0">{{atividade.usuario_id}}</td>
+                    <td tabindex="0">{{atividade.id}}</td>
+                    <td tabindex="0">{{atividade.atividade}}</td>
+                    <td tabindex="0">{{atividade.dt_atividadedb}}</td>
+                    <td tabindex="0">{{atividade.usuario_id}}</td>
+                    <td tabindex="0">
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-outline-primary btn-sm" type="button"><i class="fa-solid fa-pencil"></i></button>
+                            <button class="btn btn-outline-danger btn-sm" type="button"><i class="fa-solid fa-trash"></i></button>
+                       </div>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
     </div>
-
+    
     <div class="modal fade" id="modalAtividade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="post">
@@ -50,13 +58,13 @@
                         <div class="form-group">
                             <label tabindex="0" for="data-atividade" class="col-form-label">Data de realização:</label>
                             <input name="dt_atividade" id="data-atividade" class="form-control" type="date" required onchange="this.value = this.value.trim()" onkeydown="return false">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
+                    <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar <i class="fa-solid fa-circle-xmark" style="color: #ffffff;"></i></button>
-                    <button type="submit" class="btn btn-success">Salvar <i class="fa-solid fa-circle-check" style="color: #ffffff;"></i></button>
+                        <button type="submit" class="btn btn-success">Salvar <i class="fa-solid fa-circle-check" style="color: #ffffff;"></i></button>
                 </div>
             </form>
-        </div>
+    </div>
     
 {% endblock %}

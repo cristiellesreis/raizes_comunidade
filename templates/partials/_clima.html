@@ -1,28 +1,45 @@
-<div class="container-fluid">
+<div class="mt-2 d-flex justify-content-center flex-wrap bg-light rounded">
+
     {% if clima %}
-    <h3>Como Está o Clima?</h3>
-    <div class="card mb-3" style="max-width: 70%;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <h6>O tempo</h6>
-                <img src="http://openweathermap.org/img/wn/{{ clima.icon }}@2x.png" class="img-fluid rounded-start" alt="Imagem que indica como está o clima.">
-                <h5><b>{{clima.descricao}}</b></h5>
-                <span><img src="media\down_arrow.png" alt="Down Arrow">{{clima.min_temp}}°</span><span><img src="media\up_arrow.png" alt="Up arrow"> {{clima.max_temp}}º</span>
-                <p>Umidade: {{clima.umidade}}</p>
+    <div class="d-flex justify-content-center flex-wrap">
+
+        <div class="col-md-4 text-center border rounded bg-white mt-5 ">
+            <div class="d-flex justify-content-center mb-2 mt-4">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.cidade}}
+                    <button class="btn btn-sm btn-success" type="submit">Alterar</button>
+                </form>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <p tabindex="0" class="card-text"><!--{{texto.clima}}--> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt aliquam odit, dicta vel temporibus minima. At totam molestias voluptatum eligendi esse, exercitationem iusto. Explicabo veritatis et molestiae optio! Doloremque, laborum!
-                    </p>
-                    <p tabindex="0" class="card-text"><!--{{texto.lua}}.--> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nesciunt obcaecati sint ut beatae reiciendis tempora consequatur necessitatibus ea eius, quae quam commodi at deserunt tenetur cumque dolorum optio officiis! </p>
+            <div class="row d-flex justify-content-around flex-wrap">
+                <div>
+                    <img src="http://openweathermap.org/img/wn/{{ clima.icon }}@2x.png" class="img-fluid rounded-start" alt="Weather icon">
+                    <h6><b>{{clima.descricao}}</b></h6>
+                    <span><i class="fa-solid fa-arrow-down" style="color: #3b9af9;"></i> Min: {{clima.min_temp}}</span><span><i class="fa-solid fa-arrow-up ml-3" style="color: #fb5050;"></i> Max: {{clima.max_temp}}</span>
+                    <p class="mt-2"><i class="fa-solid fa-water" style="color: #74C0FC;"></i> Umidade: {{clima.umidade}}</p>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-center">
+                    {% if fase_lua %}
+                    <div>
+                        <img src="{{fase_lua.imagem_lua}}" alt="imagem da fase da lua" style="width: 5rem;">
+                    </div>
+                    <h6><b>{{fase_lua.fase}}</b></h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3 mb-5 bg-light rounded">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-11">
+                    <div class="card-body">
+                        <p tabindex="0" class="card-text pb-2 text-center font-weight-light">{{clima.detalhe}}</p>
+                        <p tabindex="0" class="card-text text-center font-weight-light">{{fase_lua.descricao}}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     {% endif %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.cidade}}
-        <button type="submit">Alterar cidade</button>
-    </form>
 </div>
