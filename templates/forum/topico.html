@@ -24,7 +24,7 @@
   <form action="{% url 'criar_comentario' topico_id=nome_topico.id %}" method="post">
     {% csrf_token %}
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentario" id="comentario" placeholder="Insira aqui seu comentário" required></textarea>
-    <button type="submit" id="comentario" class="btn btn-success mt-3 mb-3">Responder</button>
+    <button type="submit" id="comentario" class="btn cor-sucesso text-white mt-3 mb-3">Responder</button>
   </form>
   
   {% if comentarios %}

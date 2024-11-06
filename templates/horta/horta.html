@@ -20,7 +20,7 @@
             {% endfor %}
             {% endif %}
             <p><span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}</p>
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_cultura">
+            <button type="button" class="btn cor-sucesso text-white mb-3" data-toggle="modal" data-target="#forms_cultura">
                 Incluir cultura <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <input type="submit" class="btn btn-success" value="Adicionar"></input>
+                        <input type="submit" class="btn cor-sucesso text-white" value="Adicionar"></input>
                     </div>
                 </div>
                 </form>
@@ -93,7 +93,7 @@
 
     <section>
         <div class="d-flex justify-content-center flex-column align-items-center mb-5 mt-5 bg-light">
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_atividade">
+            <button type="button" class="btn cor-sucesso text-white mb-3" data-toggle="modal" data-target="#forms_atividade">
                 Cadastrar Atividade <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -126,7 +126,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <input type="hidden" name="horta_id" value="{{ horta.id }}">
-                        <input type="submit" class="btn btn-success" value="Adicionar"></input>
+                        <input type="submit" class="btn cor-sucesso text-white" value="Adicionar"></input>
                     </div>
                 </div>
                 </form>
@@ -170,8 +170,8 @@
                 <div class="card border-0 text-center pl-4 pt-3">
                     <div class="card-body">
                         <h1 class="card-title">Vamos plantar!</h1>
-                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 btn-success">Criar uma horta</a>
-                        <a href="{% url 'show_hortas' %}" class="btn btn-lg btn-block btn-success">Ingressar numa horta Comunitária</a>
+                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 cor-sucesso text-white">Criar uma horta</a>
+                        <a href="{% url 'show_hortas' %}" class="btn btn-lg btn-block cor-sucesso text-white">Ingressar numa horta Comunitária</a>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ horta.nome }}</h5>
                         <p class="card-text">{{ horta.descricao }}</p>
-                        <a href="{% url 'ingressar_horta' horta.id %}" class="btn btn-success">Ingressar</a>
+                        <a href="{% url 'ingressar_horta' horta.id %}" class="btn cor-sucesso text-white">Ingressar</a>
                     </div>
                 </div>
             </div>
@@ -19,6 +19,6 @@
         <p>{{ error_message }}</p>
     </div>
 
-    <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 btn-success">Criar uma horta</a>
+    <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 cor-sucesso text-white">Criar uma horta</a>
 {% endif %}
 {% endblock %}
