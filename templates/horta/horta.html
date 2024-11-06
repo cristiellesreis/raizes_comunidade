@@ -3,8 +3,8 @@
 
 <div class="jumbotron jumbotron-fluid bg-light">
     <div class="container">
-      <h1 class="display-4">Horta  <i class="fa-solid fa-seedling" style="color: #949494;"></i></h1>
-      <p class="lead">Deseja criar uma horta? Comece aqui a planejar o que será plantado!</p>
+      <h1 tabindex="0" class="display-4">Horta  <i class="fa-solid fa-seedling" style="color: #949494;"></i></h1>
+      <p tabindex="0" class="lead">Deseja criar uma horta? Comece aqui a planejar o que será plantado!</p>
     </div>
   </div>
 
@@ -13,8 +13,14 @@
         {% if horta %}
         <div class="d-flex justify-content-center flex-column align-items-center mb-5 mt-5 bg-light">
             <h1>{{ horta.nome }}</h1>
+            {% if membros %}
+            <span>Membros: </span>
+            {% for membro in membros %}
+            <span>{{ membro.username }}</span>
+            {% endfor %}
+            {% endif %}
             <p><span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}</p>
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">
+            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_cultura">
                 Incluir cultura <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -27,9 +33,9 @@
                 
                 <div class="card mt-3"  style="width: 15rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{cultura.name}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{cultura.type}}</h6>
-                    <p class="card-text">{{cultura.desc}}</p>
+                    <h5 tabindex="0" class="card-title">{{cultura.name}}</h5>
+                    <h6 tabindex="0" class="card-subtitle mb-2 text-muted">{{cultura.type}}</h6>
+                    <p tabindex="0" class="card-text">{{cultura.desc}}</p>
                     <form action="{% url 'excluir_cultura' cultura.id %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-secundary">Excluir</button>
@@ -42,7 +48,7 @@
         </div>
         {% else %}
 
-        <div class="alert alert-warning mt-5 text-center" role="alert">
+        <div tabindex="0" class="alert alert-warning mt-5 text-center" role="alert">
             A horta não possui culturas
         </div>
 
@@ -50,12 +56,12 @@
     </section>
 
     <section>
-        <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="forms_cultura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <form action={% url 'inserir_cultura' %} method='POST'>
+                <form action="{% url 'inserir_cultura' %}" method='POST'>
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Informações sobre a cultura</h5>
+                        <h5 tabindex="0" class="modal-title" id="exampleModalLabel">Informações sobre a cultura</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -63,15 +69,15 @@
                     <div class="modal-body">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nome da Cultura:</label>
+                            <label tabindex="0" for="exampleFormControlInput1" class="form-label">Nome da Cultura:</label>
                             <input name="nome_cultura" type="text" placeholder="Tomate" class="form-control form-control-lg" required="True">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tipo:</label>
+                            <label tabindex="0" for="exampleFormControlInput1" class="form-label">Tipo:</label>
                             <input name="tipo_cultura" type="text" placeholder="Fruta" class="form-control form-control-lg" required="True">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
+                            <label tabindex="0" for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
                             <textarea name="desc_cultura" rows="3" class="form-control"></textarea >
                         </div>
                     </div>
@@ -85,20 +91,87 @@
         </div>
     </div>
 
+    <section>
+        <div class="d-flex justify-content-center flex-column align-items-center mb-5 mt-5 bg-light">
+            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#forms_atividade">
+                Cadastrar Atividade <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
+            </button>
+        </div>
+
+        <div class="modal fade" id="forms_atividade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{% url 'criar_tarefa'%}" method='POST'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">O quê faremos hoje?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Escolha a cultura para realizar a atividade</label>
+                            <select name="cultura" class="form-control">
+                                {% for cultura in culturas %}
+                                    <option value="{{ cultura.id }}">{{ cultura.name }} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
+                            <textarea name="descricao_atv" rows="3" class="form-control"></textarea >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <input type="hidden" name="horta_id" value="{{ horta.id }}">
+                        <input type="submit" class="btn btn-success" value="Adicionar"></input>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div>
+        </table>
+            {% if tarefas  %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cultura</th>
+                            <th>Atividade</th>
+                            <th>Data</th>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarefa in tarefas %}
+                            <tr>
+                            <td>{{tarefa.cultura.name}}</td>
+                            <td>{{tarefa.descricao}}</td>
+                            <td>{{tarefa.dt_plantio}}</td>
+                            <td>{{tarefa.usuario.username}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+
+    </section>
+
+
     {% else %}
         <div class="d-flex justify-content-center align-items-center h-100 mt-5">
             <div class="d-flex flex-wrap">
                 <div class="d-flex flex-fill p-2 justify-content-center">
-                    <img src="/media/sammy-man-gardener-digging-up-a-carrot.png" class="img-fluid pt-3" alt="Imagem responsiva">
+                    <img src="/media/sammy-man-gardener-digging-up-a-carrot.png" class="img-fluid pt-3" alt="Uma representação em desenho de um homem colhendo cenouras.">
                 </div>
                 <div class="card border-0 text-center pl-4 pt-3">
                     <div class="card-body">
-                    <h1 class="card-title">Vamos plantar!</h1>
-                    <div class="d-grid">
-                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 btn-success">Criar minha horta</a>
-                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-3 btn-success">Criar uma horta comunitária</a>
-                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-3 btn-success">Ingressar em uma horta comunitária</a>
-                    </div>
+                        <h1 class="card-title">Vamos plantar!</h1>
+                        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 btn-success">Criar uma horta</a>
+                        <a href="{% url 'show_hortas' %}" class="btn btn-lg btn-block btn-success">Ingressar numa horta Comunitária</a>
                     </div>
                 </div>
             </div>

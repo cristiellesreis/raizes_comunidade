@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+{% if solicitacoes %}
+        <ul>
+        {% for solicitacao in solicitacoes %}
+            <li>
+                <strong>Usuário:</strong> {{ solicitacao.usuario_solicitante.username }}
+                <br>
+                <strong>Horta:</strong> {{ solicitacao.horta.nome }}
+                <br>
+            
+                <form action="{% url 'processar_solicitacao' solicitacao.id 'aprovar' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Aprovar</button>
+                </form>
+                <form action="{% url 'processar_solicitacao' solicitacao.id 'rejeitar' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Rejeitar</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+{% else %}
+    <p>Não há solicitações pendentes.</p>
+{% endif %}
+
+{% endblock %}

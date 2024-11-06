@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block conteudo %}
+    {%if error_message%}
+    <div class="alert alert-danger mt-5" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
 
     <div class="d-flex flex-fill justify-content-center align-items-center">
         <div class="card p-3 mb-2 bg-gradient-light text-dark mt-5" style="width: 25rem;">

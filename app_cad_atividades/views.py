@@ -4,6 +4,7 @@ from app_fases_lua.views import fases_lua
 from .models import Atividade
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from app_horta.models import SolicitacaoAcesso, Horta 
 from app_clima.views import  clima
 from app_clima.forms import CidadesForms
 
@@ -18,10 +19,18 @@ def home(request):
     
     dados_clima = clima(cidade)
     dados_fase_lua = fases_lua(cidade)
-
+    
+    solicitacoes_pendentes = []
+    if request.user.is_authenticated:
+        solicitacoes_pendentes = SolicitacaoAcesso.objects.filter(
+            horta = Horta.objects.filter(usuario=request.user).first(),
+            aprovado=None
+        )
+    
     contexto = {
         'clima': dados_clima,
         'form': form,
+        'solicitacoes': solicitacoes_pendentes,
         'fase_lua': dados_fase_lua
     }
 

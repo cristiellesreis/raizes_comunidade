@@ -26,7 +26,7 @@
             <a class="nav-link" href="{% url 'home' %}">Início<span class="sr-only">(Página atual)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'atividade' %}">Registre as atividades</a>
+            <a hidden class="nav-link" href="{% url 'atividade' %}">Registre as atividades</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'cultivo' %}">Cultivo</a>
@@ -40,7 +40,17 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'forum' %}">Forum</a>
           </li>
-        </li>
+          {% load custom_tags %}
+          {% if user.is_authenticated and user|has_group:"Líder Comunitário" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin' %}">
+              Admin
+              {% if solicitacoes %}
+              <span class="badge" style="background-color: red; color: white; border-radius: 50%; width: 12px; height: 12px; display: inline-block;"></span>
+               {% endif %}
+            </a>
+          </li>
+          {% endif %}
         </ul>
         <div class="ml-md-auto d-flex align-items-end flex-column">
           {% if user.is_authenticated %}

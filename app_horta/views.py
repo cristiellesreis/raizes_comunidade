@@ -1,39 +1,84 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Horta, Cultura
+from .models import Horta, Cultura, SolicitacaoAcesso, Plantio
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import Group, User
+from .servicos.servicos import enviar_solicitacao, aprovar_solicitacao, rejeitar_solicitacao
+from django.contrib import messages
 
 
 @login_required(login_url="/login/login/")
 def minha_horta(request):
-    lista_culturas = {}
     try:
-        horta_do_usuario = Horta.objects.get(usuario=request.user)
+        horta_do_usuario = Horta.objects.filter(participantes=request.user).first() or Horta.objects.filter(usuario=request.user).first()
+        print(horta_do_usuario)
+        if not horta_do_usuario:
+            return render(request, 'horta/horta.html')
+
         horta_id = horta_do_usuario.id
+        membros = horta_do_usuario.participantes.all()
         lista_culturas = Cultura.objects.filter(horta_id=horta_id)
-        return render(request, 'horta/horta.html', {'horta': horta_do_usuario, 'culturas': lista_culturas})
-    except Horta.DoesNotExist:
-        return render(request, 'horta/horta.html')
-    
+        tarefas = Plantio.objects.filter(horta_id=horta_id).order_by('-dt_plantio')[:10]
+        
+        return render(request, 'horta/horta.html', {
+            'horta': horta_do_usuario,
+            'culturas': lista_culturas,
+            'membros': membros,
+            'tarefas': tarefas,
+        })
+    except Exception as e:
+        print(f"Erro ao carregar horta: {e}")
+        return render(request, 'horta/horta.html', {'error': 'Ocorreu um erro ao carregar a horta.'})
+
+       
     
 @login_required
 def criar_horta(request):
     if request.method == "POST":
        nome = request.POST.get('nome')
        descricao = request.POST.get('descricao')
-       nova_horta = Horta(usuario= request.user, nome=nome,descricao=descricao)
+       comunitaria = False
+       
+       if request.user.groups.filter(name="Líder Comunitário").exists():
+           comunitaria = True
+       
+       nova_horta = Horta(usuario= request.user, nome=nome,descricao=descricao, comunitaria=comunitaria)
        nova_horta.save()
        return redirect("minha_horta")
     else:
         return render(request, 'horta/criar_horta.html')
+
+
+@login_required
+def show_hortas(request):
+    lista_hortas = Horta.objects.filter(comunitaria=True)
     
-    
+    if lista_hortas.exists():
+        return render(request, 'horta/hortas_comunitarias.html', {'lista_hortas': lista_hortas})
+    else:
+        return render(request, 'horta/hortas_comunitarias.html', {'error_message': 'Não há hortas comunitárias Disponíveis'})
+
+def ingressar_horta(request, horta_id):
+    horta = get_object_or_404(Horta, id=horta_id)
+    resultado = enviar_solicitacao(horta, request.user)
+    return redirect('minha_horta') 
+
+def processar_solicitacao(request, solicitacao_id, acao):
+    if acao == 'aprovar':
+        resultado = aprovar_solicitacao(solicitacao_id)
+    elif acao == 'rejeitar':
+        resultado = rejeitar_solicitacao(solicitacao_id)
+    else:
+        resultado = "Ação inválida."
+    messages.success(request, resultado)
+    return redirect('minha_horta')
+
+
 @login_required
 def inserir_cultura(request):
     
     if request.method == 'POST':
-        horta_usuario = Horta.objects.get(usuario=request.user)
-        horta_id=horta_usuario.id
+        horta_usuario = Horta.objects.filter(participantes=request.user).first() or Horta.objects.filter(usuario=request.user).first()
+        horta_id = horta_usuario.id
 
         nome = request.POST.get('nome_cultura')
         tipo = request.POST.get('tipo_cultura')
@@ -57,4 +102,23 @@ def excluir_cultura(request, pk):
         return redirect('minha_horta')
 
         
+@login_required
+def horta_admin(request):
+    solicitacoes_pendentes = []
+    solicitacoes_pendentes = SolicitacaoAcesso.objects.filter(
+        horta = Horta.objects.filter(usuario=request.user).first(),
+        aprovado=None
+    )
+    return render(request, "horta/admin.html", {'solicitacoes': solicitacoes_pendentes})
 
+
+@login_required
+def criar_tarefa(request):
+    usuario = request.user
+    cultura_id = request.POST.get('cultura')
+    cultura = get_object_or_404(Cultura, pk=cultura_id)
+    descricao = request.POST.get('descricao_atv')
+    horta = cultura.horta 
+    cultivo = Plantio(usuario=usuario, cultura=cultura,horta=horta,descricao=descricao)
+    cultivo.save()
+    return redirect('minha_horta')
