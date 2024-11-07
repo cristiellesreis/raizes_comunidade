@@ -13,7 +13,7 @@
     <nav class="navbar navbar-light bg-white">
       <form class="form-inline" action="{% url 'pesquisa' %}" method="get">
         <input class="form-control mr-sm-2" type="search" name="q" placeholder="Pesquisar" aria-label="Pesquisar" style="width: 20rem;">
-        <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar <i class="fa-solid fa-magnifying-glass fa-rotate-90" style="color: #ffffff;"></i></button>
+        <button class="btn cor-sucesso my-2 my-sm-0 text-white" type="submit">Buscar <i class="fa-solid fa-magnifying-glass fa-rotate-90" style="color: #ffffff;"></i></button>
       </form>
     </nav>
   </div>
@@ -26,7 +26,7 @@
         <div class="card-body d-flex flex-column align-items-left">
           <h5 tabindex="0" class="card-title">{{cultivo.nome}}</h5>
           <p tabindex="0" class="card-text font-italic">Nome científico: {{cultivo.nome_cientifico}}</p>
-          <button type="button" class="btn btn-success mt-auto" data-toggle="modal" data-target="#modal_{{cultivo.id}}">
+          <button type="button" class="btn cor-sucesso mt-auto text-white" data-toggle="modal" data-target="#modal_{{cultivo.id}}">
             Saiba mais
           </button>
         </div>
