@@ -2,23 +2,25 @@
 {% block conteudo %}
 {% if lista_hortas %}
     {% for horta in lista_hortas %}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ horta.nome }}</h5>
-                        <p class="card-text">{{ horta.descricao }}</p>
-                        <a href="{% url 'ingressar_horta' horta.id %}" class="btn cor-sucesso text-white">Ingressar</a>
-                    </div>
-                </div>
+
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://costanorte.com.br/media/_versions/legacy/39/98/397898_widelg.jpg" alt="canteiros de uma horta comunitária">
+            <div class="card-body">
+                <h5 class="card-title">{{ horta.nome }}</h5>
+                <p class="card-text">{{ horta.descricao }}</p>
+                <a href="{% url 'ingressar_horta' horta.id %}" class="btn cor-sucesso text-white">Ingressar</a>
             </div>
         </div>
-    {% endfor %}
-{% else %}
-    <div class="alert alert-danger mt-5" role="alert">
-        <p>{{ error_message }}</p>
     </div>
+       
+    {% endfor %}
+    {% else %}
+        <div class="alert alert-danger mt-5" role="alert">
+            <p>{{ error_message }}</p>
+        </div>
 
-    <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 cor-sucesso text-white">Criar uma horta</a>
-{% endif %}
+        <a href="{% url 'criar_horta' %}" class="btn btn-lg btn-block mt-5 mb-2 cor-sucesso text-white">Criar uma horta</a>
+    {% endif %}
+
 {% endblock %}
