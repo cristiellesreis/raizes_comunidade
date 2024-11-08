@@ -17,7 +17,6 @@
             </div>
 
             <div>
-               
                 <p>
                     <span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}
                 </p>
@@ -36,7 +35,9 @@
             </div>
         </div>   
         {% endif %}
+
     </div>
+
     <div class="container p-0">
         <div class="container p-0">
             <button type="button" class="btn cor-sucesso text-white" data-toggle="modal" data-target="#forms_cultura">
@@ -178,11 +179,10 @@
                 </table>
             {% endif %}
         </div>
-
     </section>
 
-
     {% else %}
+
         <div class="d-flex justify-content-center align-items-center h-100 mt-5">
             <div class="d-flex flex-wrap">
                 <div class="d-flex flex-fill p-2 justify-content-center">
@@ -198,6 +198,7 @@
             </div>
         </div>
     {% endif %}
+    
 </section>
     
 {% endblock %}

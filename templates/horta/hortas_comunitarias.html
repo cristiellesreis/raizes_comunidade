@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 {% if lista_hortas %}
-    {% for horta in lista_hortas %}
+    <div class="row d-flex justify-content-center m-2">
+        
+        {% for horta in lista_hortas %}
 
-    <div class="container d-flex justify-content-center mt-5">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://costanorte.com.br/media/_versions/legacy/39/98/397898_widelg.jpg" alt="canteiros de uma horta comunitária">
-            <div class="card-body">
-                <h5 class="card-title">{{ horta.nome }}</h5>
-                <p class="card-text">{{ horta.descricao }}</p>
-                <a href="{% url 'ingressar_horta' horta.id %}" class="btn cor-sucesso text-white">Ingressar</a>
+        <div class="mt-5 flex-wrap d-flex col-sm-2">
+            <div class="card d-flex">
+                <div class="card-body">
+                    <img class="card-img-top rounded img-thumbnail" src="https://costanorte.com.br/media/_versions/legacy/39/98/397898_widelg.jpg" alt="canteiros de uma horta comunitária">
+                    <h5 class="card-title pt-3">{{ horta.nome }}</h5>
+                    <p class="card-text">{{ horta.descricao }}</p>
+                    <a href="{% url 'ingressar_horta' horta.id %}" class="btn cor-sucesso text-white">Ingressar</a>
+                </div>
             </div>
         </div>
+        {% endfor %}
+        
     </div>
        
-    {% endfor %}
     {% else %}
         <div class="alert alert-danger mt-5" role="alert">
             <p>{{ error_message }}</p>
