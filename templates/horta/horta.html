@@ -17,7 +17,7 @@
             </div>
 
             <div>
-                {% endif %}
+               
                 <p>
                     <span class="font-weight-bold">Descrição: </span>{{ horta.descricao }}
                 </p>
@@ -35,8 +35,9 @@
                 </div>
             </div>
         </div>   
+        {% endif %}
     </div>
-    <div class="container">
+    <div class="container p-0">
         <div class="container p-0">
             <button type="button" class="btn cor-sucesso text-white" data-toggle="modal" data-target="#forms_cultura">
                 Incluir cultura <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>
